@@ -1,16 +1,55 @@
 ## Documentation: http://docs.travis-ci.com/user/languages/julia/
 language: julia
-dist: bionic
-os:
-  - linux
-  - osx
-julia:
-  - 1.0
-  - 1.2
-  - nightly
+# macos versions from https://docs.travis-ci.com/user/reference/osx/#xcode-version
 matrix:
- allow_failures:
- - julia: nightly
+  include:
+    - os: linux
+      dist: bionic
+      julia: 1.2
+    - os: linux
+      dist: bionic
+      julia: 1.0
+    - os: linux
+      dist: bionic
+      julia: nightly
+    # 10.14
+    - os: osx
+      osx_image: xcode11
+      julia: 1.2
+    - os: osx
+      osx_image: xcode11
+      julia: 1.0
+    - os: osx
+      osx_image: xcode11
+      julia: nightly
+    # 10.14.4
+    - os: osx
+      osx_image: xcode10.3
+      julia: 1.2
+    # 10.13 travis default
+    - os: osx
+      osx_image: xcode9.4
+      julia: 1.2
+    - os: osx
+      osx_image: xcode9.4
+      julia: 1.0
+    # 10.12
+    - os: osx
+      osx_image: xcode9.2
+      julia: 1.2
+    # 10.11
+    - os: osx
+      osx_image: xcode8
+      julia: 1.2
+    # 10.10
+    - os: osx
+      osx_image: xcode6.4
+      julia: 1.2
+    - os: osx
+      osx_image: xcode6.4
+      julia: 1.0
+  allow_failures:
+    - julia: nightly
 notifications:
   email: false
 codecov: true
